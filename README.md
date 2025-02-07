@@ -5,6 +5,12 @@
   - Maven 3.6.*
   - Java 21
 
+
+## Questions
+- How to handle double-digit prices (VK - artikel1.csv)?
+- Is content == volume (liters)?
+
+
 ## Ham wer wieder was gelernt - Whitespace
 
 Not all whitespace is the same. For the following characters `Characters::isWhitespace` is true while

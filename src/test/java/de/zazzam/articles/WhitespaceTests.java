@@ -84,7 +84,6 @@ public class WhitespaceTests {
     @MethodSource("provideAllWhitespaceChars")
     public void guavaTrimsAllWhitespace(Character whitespace) {
         // TODO - separators (file, group, record, unit) are not matched as whitespace
-        CharMatcher.
         Assertions.assertTrue(CharMatcher.whitespace().matches(whitespace));
         Assertions.assertTrue(CharMatcher.whitespace().trimFrom(whitespace.toString()).isEmpty());
     }
