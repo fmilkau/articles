@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "zazzam.article.data-root",
+      "type": "java.lang.String",
+      "description": "Path to directory containing article csv files."
+    }
+  ]
+}
