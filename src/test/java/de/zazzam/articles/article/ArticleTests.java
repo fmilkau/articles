@@ -26,35 +26,39 @@ public class ArticleTests {
 
     private static Stream<Arguments> provideValidArticleArguments() {
         return Stream.of(
-                Arguments.of("10001", "12345", "A beautiful thing", 5, UnitOfMeasure.Keg, new Price(1999, Currency.EUR))
-                // TODO - add more cases
+            Arguments.of("10001", "12345", "A beautiful thing", 5, UnitOfMeasure.Keg, new Price(1999, Currency.EUR)),
+            Arguments.of("10002", "7753", "Sparkly Water", 6, UnitOfMeasure.Box, new Price(7599, Currency.EUR)),
+            Arguments.of("55347", "78963", "Juicy Juice", 99, UnitOfMeasure.Container, new Price(12750, Currency.USD)),
+            Arguments.of("33445", "11223", "Golden Honey", 12, UnitOfMeasure.Bottle, new Price(899, Currency.USD)),
+            Arguments.of("77889", "66778", "Fresh Milk", 10, UnitOfMeasure.Case, new Price(1599, Currency.EUR)),
+            Arguments.of("99001", "55644", "Organic Tea", 20, UnitOfMeasure.Tray, new Price(3499, Currency.USD)),
+            Arguments.of("44332", "99887", "Hot Coffee", 15, UnitOfMeasure.Dispenser, new Price(4599, Currency.USD)),
+            Arguments.of("88776", "22334", "Cold Brew", 8, UnitOfMeasure.BagInBox, new Price(2999, Currency.EUR)),
+            Arguments.of("99887", "66789", "Choco Drink", 7, UnitOfMeasure.None, new Price(1899, Currency.USD)),
+            Arguments.of("66554", "33445", "Protein Shake", 25, UnitOfMeasure.Keg, new Price(7599, Currency.EUR)),
+            Arguments.of("55443", "22331", "Healthy Smoothie", 50, UnitOfMeasure.Container, new Price(12999, Currency.EUR)),
+            Arguments.of("11223", "55444", "Ginger Ale", 30, UnitOfMeasure.Box, new Price(4999, Currency.USD)),
+            Arguments.of("77665", "99887", "Tonic Water", 14, UnitOfMeasure.Tray, new Price(3799, Currency.EUR)),
+            Arguments.of("66543", "88776", "Energy Drink", 22, UnitOfMeasure.Dispenser, new Price(6899, Currency.USD)),
+            Arguments.of("99876", "22331", "Lemonade", 18, UnitOfMeasure.Bottle, new Price(2599, Currency.USD)),
+            Arguments.of("33221", "55677", "Iced Tea", 11, UnitOfMeasure.Case, new Price(3199, Currency.EUR))
         );
     }
 
     private static Stream<Arguments> provideArticlesWithEmptyArticleId() {
-        Stream.Builder<Arguments> arguments = Stream.builder();
-        for (Character c : trimmableWhitespaceChars) {
-            // replace the first argument (articleId) with the whitespace character c (later used as articleId)
-            provideValidArticleArguments()
-                    .map(Arguments::get)
-                    .map(args -> Arrays.copyOfRange(args, 1, args.length)) // truncate array (1 to end)
-                    .map(args -> Stream.concat(Stream.of(c), Arrays.stream(args)).toArray()) // prepend c
-                    .map(Arguments::of)
-                    .forEach(arguments::add);
-        }
-        return arguments.build();
+        return trimmableWhitespaceChars.stream()
+            .flatMap(whitespaceChar -> replaceArg(provideValidArticleArguments(), 0, whitespaceChar));
     }
 
     private static Stream<Arguments> provideArticlesWithEmptyPartnerId() {
-        Stream.Builder<Arguments> arguments = Stream.builder();
-        for (Character c : trimmableWhitespaceChars) {
-            // replace the first argument (articleId) with the whitespace character c (later used as articleId)
-            provideValidArticleArguments()
-                    .map(Arguments::get)
-                    .map(args -> Arguments.of(args[0], c, args[2], args[3], args[4], args[5])) // replace 2nd arg (partnerId)
-                    .forEach(arguments::add);
-        }
-        return arguments.build();
+        return trimmableWhitespaceChars.stream()
+            .flatMap(whitespaceChar -> replaceArg(provideValidArticleArguments(), 1, whitespaceChar));
+    }
+
+    private static Stream<Arguments> replaceArg(Stream<Arguments> arguments, int index, Object replacement) {
+        return arguments.map(Arguments::get)
+            .peek(args -> args[index] = replacement)
+            .map(Arguments::of);
     }
 
     @ParameterizedTest
