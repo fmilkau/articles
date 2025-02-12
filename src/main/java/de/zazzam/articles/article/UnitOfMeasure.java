@@ -9,5 +9,6 @@ public enum UnitOfMeasure {
     Container,
     Keg,
     None,
-    Bottle
+    Bottle,
+    Item
 }
