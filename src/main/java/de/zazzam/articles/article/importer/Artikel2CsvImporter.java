@@ -8,12 +8,12 @@ import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 
-public class Artikel1CsvImporter extends AbstractArticleCsvImporter {
+public class Artikel2CsvImporter extends AbstractArticleCsvImporter {
 
-    public Artikel1CsvImporter(Currency currency) {
+    public Artikel2CsvImporter() {
         super(
-            List.of("PartnerID", "ArtNr", "ArtBez", "Inhalt", "MEH", "VK"),
-            new PriceParserImpl(currency, NumberFormat.getInstance(Locale.GERMANY)),
+            List.of("PartnerID", "Artikelnummer", "Name", "Inhalt", "MEH", "Preis"),
+            new PriceParserImpl(Currency.getInstance("EUR"), NumberFormat.getInstance(Locale.GERMANY)),
             new GermanUnitOfMeasureMapper()
         );
     }

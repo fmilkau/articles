@@ -15,7 +15,6 @@ public class WhitespaceTests {
     // see https://en.wikipedia.org/wiki/Figure_space
     private static final Character figureSpace = '\u2007';
 
-    // TODO - add all https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5Cp%7Bwhitespace%7D
     private static final List<Character> trimmableWhitespaceChars = Arrays.asList(
         ' ',     // Space (U+0020)
         '\t',    // Tab (U+0009)

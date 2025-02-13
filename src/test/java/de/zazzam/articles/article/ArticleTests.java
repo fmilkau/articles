@@ -1,11 +1,14 @@
 package de.zazzam.articles.article;
 
+import de.zazzam.articles.price.Price;
+import de.zazzam.articles.unit.UnitOfMeasure;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
+import java.util.Currency;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -25,23 +28,25 @@ public class ArticleTests {
     );
 
     private static Stream<Arguments> provideValidArticleArguments() {
+        Currency eur = Currency.getInstance("EUR");
+        Currency usd = Currency.getInstance("USD");
         return Stream.of(
-            Arguments.of("10001", "12345", "A beautiful thing", 5, UnitOfMeasure.Keg, new Price(1999, Currency.EUR)),
-            Arguments.of("10002", "7753", "Sparkly Water", 6, UnitOfMeasure.Box, new Price(7599, Currency.EUR)),
-            Arguments.of("55347", "78963", "Juicy Juice", 99, UnitOfMeasure.Container, new Price(12750, Currency.USD)),
-            Arguments.of("33445", "11223", "Golden Honey", 12, UnitOfMeasure.Bottle, new Price(899, Currency.USD)),
-            Arguments.of("77889", "66778", "Fresh Milk", 10, UnitOfMeasure.Case, new Price(1599, Currency.EUR)),
-            Arguments.of("99001", "55644", "Organic Tea", 20, UnitOfMeasure.Tray, new Price(3499, Currency.USD)),
-            Arguments.of("44332", "99887", "Hot Coffee", 15, UnitOfMeasure.Dispenser, new Price(4599, Currency.USD)),
-            Arguments.of("88776", "22334", "Cold Brew", 8, UnitOfMeasure.BagInBox, new Price(2999, Currency.EUR)),
-            Arguments.of("99887", "66789", "Choco Drink", 7, UnitOfMeasure.None, new Price(1899, Currency.USD)),
-            Arguments.of("66554", "33445", "Protein Shake", 25, UnitOfMeasure.Keg, new Price(7599, Currency.EUR)),
-            Arguments.of("55443", "22331", "Healthy Smoothie", 50, UnitOfMeasure.Container, new Price(12999, Currency.EUR)),
-            Arguments.of("11223", "55444", "Ginger Ale", 30, UnitOfMeasure.Box, new Price(4999, Currency.USD)),
-            Arguments.of("77665", "99887", "Tonic Water", 14, UnitOfMeasure.Tray, new Price(3799, Currency.EUR)),
-            Arguments.of("66543", "88776", "Energy Drink", 22, UnitOfMeasure.Dispenser, new Price(6899, Currency.USD)),
-            Arguments.of("99876", "22331", "Lemonade", 18, UnitOfMeasure.Bottle, new Price(2599, Currency.USD)),
-            Arguments.of("33221", "55677", "Iced Tea", 11, UnitOfMeasure.Case, new Price(3199, Currency.EUR))
+            Arguments.of("10001", "12345", "A beautiful thing", 5, UnitOfMeasure.Keg, new Price(1999L, eur)),
+            Arguments.of("10002", "7753", "Sparkly Water", 6, UnitOfMeasure.Box, new Price(7599L, eur)),
+            Arguments.of("55347", "78963", "Juicy Juice", 99, UnitOfMeasure.Container, new Price(12750L, usd)),
+            Arguments.of("33445", "11223", "Golden Honey", 12, UnitOfMeasure.Bottle, new Price(899L, usd)),
+            Arguments.of("77889", "66778", "Fresh Milk", 10, UnitOfMeasure.Case, new Price(1599L, eur)),
+            Arguments.of("99001", "55644", "Organic Tea", 20, UnitOfMeasure.Tray, new Price(3499L, usd)),
+            Arguments.of("44332", "99887", "Hot Coffee", 15, UnitOfMeasure.Dispenser, new Price(4599L, usd)),
+            Arguments.of("88776", "22334", "Cold Brew", 8, UnitOfMeasure.BagInBox, new Price(2999L, eur)),
+            Arguments.of("99887", "66789", "Choco Drink", 7, UnitOfMeasure.Item, new Price(1899L, usd)),
+            Arguments.of("66554", "33445", "Protein Shake", 25, UnitOfMeasure.Keg, new Price(7599L, eur)),
+            Arguments.of("55443", "22331", "Healthy Smoothie", 50, UnitOfMeasure.Container, new Price(12999L, eur)),
+            Arguments.of("11223", "55444", "Ginger Ale", 30, UnitOfMeasure.Box, new Price(4999L, usd)),
+            Arguments.of("77665", "99887", "Tonic Water", 14, UnitOfMeasure.Tray, new Price(3799L, eur)),
+            Arguments.of("66543", "88776", "Energy Drink", 22, UnitOfMeasure.Dispenser, new Price(6899L, usd)),
+            Arguments.of("99876", "22331", "Lemonade", 18, UnitOfMeasure.Bottle, new Price(2599L, usd)),
+            Arguments.of("33221", "55677", "Iced Tea", 11, UnitOfMeasure.Case, new Price(3199L, eur))
         );
     }
 

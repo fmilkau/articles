@@ -1,6 +1,8 @@
-package de.zazzam.articles.article;
+package de.zazzam.articles.price;
 
-public record Price(Integer amount, Currency currency) {
+import java.util.Currency;
+
+public record Price(Long amount, Currency currency) {
 
     public Price {
         if (null == amount) {

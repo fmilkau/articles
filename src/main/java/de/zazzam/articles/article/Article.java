@@ -1,9 +1,12 @@
 package de.zazzam.articles.article;
 
+import de.zazzam.articles.price.Price;
+import de.zazzam.articles.unit.UnitOfMeasure;
+
 public record Article(String articleId,
                       String partnerId,
                       String name,
-                      Integer content, // FIXME - perhaps fraction data type might be more fitting?
+                      Integer content,
                       UnitOfMeasure unit,
                       Price price) {
 

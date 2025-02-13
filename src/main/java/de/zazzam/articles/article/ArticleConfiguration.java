@@ -1,6 +1,7 @@
 package de.zazzam.articles.article;
 
 import de.zazzam.articles.article.importer.Artikel1CsvImporter;
+import de.zazzam.articles.article.importer.Artikel2CsvImporter;
 import de.zazzam.articles.importer.ConfigurableArticleCsvImporterResolver;
 import de.zazzam.articles.importer.CsvImporter;
 import de.zazzam.articles.importer.CsvImporterResolver;
@@ -14,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -45,12 +47,9 @@ public class ArticleConfiguration {
 
     private CsvImporterResolver<Article> importerResolver() {
         ConfigurableArticleCsvImporterResolver resolver = new ConfigurableArticleCsvImporterResolver();
-        resolver.addCsvImporter(new Artikel1CsvImporter(Currency.CLF));
+        resolver.addCsvImporter(new Artikel1CsvImporter(Currency.getInstance("CLF")));
+        resolver.addCsvImporter(new Artikel2CsvImporter());
         return resolver;
-    }
-
-    private CsvImporter<Article> getCsvImporter() {
-        return null;
     }
 
     private List<Path> getCandidateFiles() throws IOException {

@@ -1,4 +1,4 @@
-package de.zazzam.articles.article;
+package de.zazzam.articles.unit;
 
 public enum UnitOfMeasure {
     Box,
@@ -8,7 +8,6 @@ public enum UnitOfMeasure {
     BagInBox,
     Container,
     Keg,
-    None,
     Bottle,
     Item
 }
