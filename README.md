@@ -10,7 +10,12 @@
 **Build:** `mvn package`  
 **Run:** `java -jar target/articles-0.0.1-SNAPSHOT.jar`  
 **Build image:** `docker build -t ghcr.io/fmilkau/articles:latest .`  
-**Run container:** ` docker run --rm -v /absolute/path/to/data/dir:/var/lib/articles -p 127.0.0.1:8080:8080 ghcr.io/fmilkau/articles:latest`
+**Pull image:** `docker pull ghcr.io/fmilkau/articles:latest`  
+
+**Run container:**  
+```shell
+docker run --rm -v /absolute/path/to/data/dir:/var/lib/articles -p 127.0.0.1:8080:8080 ghcr.io/fmilkau/articles:latest
+``` 
 
 ## API
 
